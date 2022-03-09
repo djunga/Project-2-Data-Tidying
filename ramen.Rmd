@@ -1,0 +1,50 @@
+---
+title: "Ramen Ratings"
+author: "Tora Mullings"
+date: "3/8/2022"
+output: html_document
+---
+
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(stringr)
+```
+
+
+
+```{r}
+filename <- "https://raw.githubusercontent.com/djunga/Project-2-Data-Tidying/main/ramen-ratings.csv"
+
+responses <- read.csv(filename, header=TRUE, sep=",")
+```
+
+
+```{r}
+responses$Stars <- as.numeric(responses$Stars)
+```
+
+A bar graph showing the number of ramen variety ratings the ramen enthusiast made from each country.
+
+```{r}
+ggplot(data = responses) + 
+  geom_bar(mapping = aes(x = Country)) +
+  coord_flip()
+```
+
+
+```{r}
+my_selection <- responses %>% 
+  select(Country, Brand, Variety, Style, Stars)
+```
+
+
+The ramen enthusiast's highest rated ramen brands by country.
+```{r}
+my_selection %>%
+  group_by(Country) %>%
+  arrange(Country) %>%
+  top_n(1, Stars)
+```
+

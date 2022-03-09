@@ -1,0 +1,41 @@
+---
+title: "Early School Ratings"
+author: "Tora Mullings"
+date: "3/7/2022"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(stringr)
+```
+
+
+```{r}
+filename <- "https://raw.githubusercontent.com/djunga/Project-2-Data-Tidying/main/school-quality.csv"
+
+responses <- read.csv(filename, header=TRUE, sep=",")
+```
+
+
+> Quality Review 1.2: How effective is the teaching and learning?
+Research-based, effective instruction that yields high quality student work.
+
+```{r}
+ggplot(data=responses) +
+  geom_bar(mapping = aes(x = QR_1_2))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+

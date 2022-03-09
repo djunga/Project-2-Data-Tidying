@@ -1,0 +1,38 @@
+---
+title: "Product Sales"
+author: "Tora Mullings"
+date: "3/9/2022"
+output: html_document
+---
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+library(stringr)
+```
+
+
+```{r}
+filename <- "https://raw.githubusercontent.com/djunga/Project-2-Data-Tidying/main/products.csv"
+
+df <- read.csv(filename, header=TRUE, sep=",")
+df
+```
+
+
+```{r}
+
+colors <- c("ProductP1" = "blue", "ProductP2" = "green", "ProductP3" = "orange", "ProductP4" = "yellow", "ProductP5" = "black")
+
+ggplot(data=df) + 
+  geom_point(mapping=aes(x=temperature, y=ProductP1, color="ProductP1")) + 
+  geom_point(mapping=aes(x=temperature, y=ProductP2, color="ProductP2")) +
+  geom_point(mapping=aes(x=temperature, y=ProductP3, color="ProductP3")) +
+  geom_point(mapping=aes(x=temperature, y=ProductP4, color="ProductP4")) +
+  geom_point(mapping=aes(x=temperature, y=ProductP5, color="ProductP5")) +
+  labs(x = "Temperature",
+         y = "Num of Sales",
+         color = "Legend") +
+    scale_color_manual(values = colors)
+```
+
